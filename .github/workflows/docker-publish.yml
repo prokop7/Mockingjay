@@ -37,6 +37,8 @@ jobs:
         run: mvn -B package
 
   docker-build:
+    needs:
+      - maven-build
     runs-on: ubuntu-latest
     permissions:
       contents: read
