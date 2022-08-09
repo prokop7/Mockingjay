@@ -21,8 +21,10 @@ env:
 
 
 jobs:
-  build:
+  fromMaven:
     uses: ./.github/workflows/maven.yml
+
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: read
