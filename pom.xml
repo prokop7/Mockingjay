@@ -9,6 +9,8 @@
         <module>postman-import</module>
         <module>persistence-mongo</module>
         <module>request-audit</module>
+        <module>persistence-dynamodb</module>
+        <module>persistence-memory</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -36,6 +38,16 @@
             <dependency>
                 <groupId>com.kazanexpress</groupId>
                 <artifactId>persistence-mongo</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kazanexpress</groupId>
+                <artifactId>persistence-dynamodb</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kazanexpress</groupId>
+                <artifactId>persistence-memory</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>

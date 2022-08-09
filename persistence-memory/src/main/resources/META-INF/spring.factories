@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.kazanexpress.mockserver.memory.InMemoryAuditPersistenceService,\
+    com.kazanexpress.mockserver.memory.InMemoryMockDataPersistence

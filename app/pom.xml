@@ -24,7 +24,7 @@
         </dependency>
         <dependency>
             <groupId>com.kazanexpress</groupId>
-            <artifactId>persistence-mongo</artifactId>
+            <artifactId>persistence-memory</artifactId>
         </dependency>
         <dependency>
             <groupId>com.kazanexpress</groupId>
