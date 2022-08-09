@@ -26,7 +26,7 @@ class RequestHandler(
             Mono.just(
                 Request(
                     path,
-                    request.method.name(),
+                    request.method!!.name,
                     body,
                     request.queryParams.toSingleValueMap(),
                     request.headers.toSingleValueMap()
