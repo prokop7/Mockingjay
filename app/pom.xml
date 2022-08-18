@@ -73,7 +73,7 @@
                 <configuration>
                     <image>
                         <pullPolicy>IF_NOT_PRESENT</pullPolicy>
-                        <builder>paketobuildpacks/builder:tiny</builder>
+                        <builder>paketobuildpacks/builder:0.1.241-tiny</builder>
                         <env>
                             <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
                             <BP_NATIVE_IMAGE_BUILD_ARGUMENTS>--trace-object-instantiation=ch.qos.logback.classic.Logger
