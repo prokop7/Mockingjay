@@ -68,5 +68,7 @@ jobs:
           password: ${{ secrets.REGISTRY_KEY }}
 
       - name: Build native image
-        run: cd app && mvn spring-boot:build-image -Dspring-boot.build-image.imageName=prokop7/mock-server:master -Dspring-boot.build-image.publish=true
+        run: |
+          cd app
+          mvn spring-boot:build-image -Dspring-boot.build-image.imageName=prokop7/mock-server:master -Dspring-boot.build-image.publish=true
 
