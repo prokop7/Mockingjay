@@ -30,7 +30,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-
       - run: |
           download_url="https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-21.3.3/graalvm-ce-java17-linux-amd64-21.3.3.tar.gz"
           wget -O $RUNNER_TEMP/java_package.tar.gz $download_url
