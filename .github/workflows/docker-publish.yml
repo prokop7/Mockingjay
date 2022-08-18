@@ -14,7 +14,7 @@ on:
 env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: cr.yandex
-  IMAGE_NAME: ${{ REGISTRY }}/prokop7/mock-server:master
+  IMAGE_NAME: ${{ env.REGISTRY }}/prokop7/mock-server:master
 
 jobs:
   maven-build:
