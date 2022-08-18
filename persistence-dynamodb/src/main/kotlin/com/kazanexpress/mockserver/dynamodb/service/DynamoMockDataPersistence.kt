@@ -5,10 +5,7 @@ import com.kazanexpress.mockserver.service.MockDataPersistence
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient
-import software.amazon.awssdk.services.dynamodb.model.AttributeValue
-import software.amazon.awssdk.services.dynamodb.model.AttributeValueUpdate
-import software.amazon.awssdk.services.dynamodb.model.GetItemRequest
-import software.amazon.awssdk.services.dynamodb.model.UpdateItemRequest
+import software.amazon.awssdk.services.dynamodb.model.*
 import java.time.LocalDateTime
 
 @Service
@@ -24,10 +21,14 @@ class DynamoMockDataPersistence(
                     .key(mapOf("mockId" to AttributeValue.builder().s(mockData.id).build()))
                     .attributeUpdates(
                         mapOf(
-                            "data" to AttributeValueUpdate.builder().value(AttributeValue.fromS(mockData.toJson()))
+                            "data" to AttributeValueUpdate.builder()
+                                .action(AttributeAction.PUT)
+                                .value(AttributeValue.fromS(mockData.toJson()))
                                 .build(),
                             "dateTime" to AttributeValueUpdate.builder()
-                                .value(AttributeValue.fromS(LocalDateTime.now().toString())).build(),
+                                .action(AttributeAction.PUT)
+                                .value(AttributeValue.fromS(LocalDateTime.now().toString()))
+                                .build(),
                         )
                     )
                     .build()

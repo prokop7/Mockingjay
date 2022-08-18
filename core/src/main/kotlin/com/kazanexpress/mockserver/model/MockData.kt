@@ -3,10 +3,10 @@ package com.kazanexpress.mockserver.model
 import com.kazanexpress.mockserver.randomString
 import java.util.*
 
-open class MockData(
+class MockData(
     val name: String,
     val requests: List<CollectionItem>,
-    open val id: String = randomString(20)
+    val id: String = randomString(20)
 ) {
 }
 

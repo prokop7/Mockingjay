@@ -2,6 +2,7 @@ package com.kazanexpress.mockserver.dynamodb.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.kazanexpress.mockserver.audit.model.RequestLog
 import com.kazanexpress.mockserver.audit.service.AuditPersistence
 import com.kazanexpress.mockserver.model.Request
@@ -99,7 +100,7 @@ class DynamoAuditPersistenceService(
     }
 }
 
-private val objectMapper: ObjectMapper = ObjectMapper().registerModule(JavaTimeModule())
+private val objectMapper: ObjectMapper = jacksonObjectMapper().registerModule(JavaTimeModule())
 
 fun Any?.toJson(): String? {
     return objectMapper.writeValueAsString(this)
