@@ -79,11 +79,16 @@
                             <BP_NATIVE_IMAGE_BUILD_ARGUMENTS>--trace-object-instantiation=ch.qos.logback.classic.Logger
                                 --initialize-at-build-time=org.slf4j.simple.SimpleLogger,org.slf4j.LoggerFactory,ch.qos.logback.classic.Logger
                                 --report-unsupported-elements-at-runtime
-                                -J--add-modules
-                                -JALL-SYSTEM
                             </BP_NATIVE_IMAGE_BUILD_ARGUMENTS>
                         </env>
                     </image>
+                    <docker>
+                        <publishRegistry>
+                            <username>${docker.username}</username>
+                            <token>${docker.key}</token>
+                            <url>${docker.registryUrl}</url>
+                        </publishRegistry>
+                    </docker>
                 </configuration>
             </plugin>
         </plugins>
