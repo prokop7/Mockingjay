@@ -1,40 +1,44 @@
 package com.kazanexpress.mockserver.dynamodb
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider
-import com.amazonaws.auth.BasicAWSCredentials
-import com.amazonaws.client.builder.AwsClientBuilder
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBAsyncClientBuilder
-import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories
-import org.springframework.beans.factory.annotation.Value
+import com.kazanexpress.mockserver.dynamodb.property.DynamoDbProperties
+import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider
+import software.amazon.awssdk.awscore.defaultsmode.DefaultsMode
+import software.amazon.awssdk.core.retry.RetryPolicy
+import software.amazon.awssdk.regions.Region
+import software.amazon.awssdk.services.dynamodb.DynamoDbClient
+import java.net.URI
+import java.time.Duration
 
 
-@EnableDynamoDBRepositories(basePackages = ["com.kazanexpress.mockserver.dynamodb.dao"])
+@EnableConfigurationProperties
 @ComponentScan
 @Configuration
-class DynamoDbConfig {
-
-    @Value("\${amazon.dynamodb.endpoint}")
-    private var serviceUrl = ""
-
-    @Value("\${amazon.dynamodb.region}")
-    private var region = ""
-
-    @Value("\${amazon.dynamodb.access-key}")
-    private var accessKey = ""
-
-    @Value("\${amazon.dynamodb.secret-key}")
-    private var accessSecret = ""
+class DynamoDbConfig(private val properties: DynamoDbProperties) {
 
     @Bean(name = ["amazonDynamoDB"])
-    fun amazonDynamoDb(): AmazonDynamoDB {
-        return AmazonDynamoDBAsyncClientBuilder.standard()
-            .withCredentials(AWSStaticCredentialsProvider(BasicAWSCredentials(accessKey, accessSecret)))
-            .withEndpointConfiguration(
-                AwsClientBuilder.EndpointConfiguration(serviceUrl, region)
+    fun dynamoDbClient(): DynamoDbClient {
+        return DynamoDbClient.builder()
+            .dualstackEnabled(false)
+            .defaultsMode(DefaultsMode.LEGACY)
+            .overrideConfiguration { builder ->
+                builder.retryPolicy(RetryPolicy.builder().numRetries(0).build())
+                    .apiCallTimeout(Duration.ofSeconds(2))
+                    .apiCallAttemptTimeout(Duration.ofSeconds(2))
+            }
+            .endpointOverride(URI.create(properties.serverUrl))
+            .region(Region.of(properties.region))
+            .credentialsProvider(
+                StaticCredentialsProvider.create(
+                    AwsBasicCredentials.create(
+                        properties.accessKey,
+                        properties.accessSecret
+                    )
+                )
             )
             .build()
     }

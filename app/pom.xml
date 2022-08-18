@@ -24,7 +24,7 @@
         </dependency>
         <dependency>
             <groupId>com.kazanexpress</groupId>
-            <artifactId>persistence-memory</artifactId>
+            <artifactId>persistence-dynamodb</artifactId>
         </dependency>
         <dependency>
             <groupId>com.kazanexpress</groupId>
@@ -39,6 +39,10 @@
             <groupId>org.springframework.experimental</groupId>
             <artifactId>spring-native</artifactId>
             <version>0.12.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
