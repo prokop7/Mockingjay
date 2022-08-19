@@ -1,3 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.kazanexpress.mockserver.postman.controller.ImportController,\
-    com.kazanexpress.mockserver.postman.service.PostmanImportService
+  com.kazanexpress.mockserver.postman.PostmanImportConfig

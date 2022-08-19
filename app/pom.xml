@@ -36,11 +36,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.experimental</groupId>
-            <artifactId>spring-native</artifactId>
-            <version>0.12.1</version>
-        </dependency>
-        <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
@@ -82,13 +77,6 @@
                             </BP_NATIVE_IMAGE_BUILD_ARGUMENTS>
                         </env>
                     </image>
-                    <docker>
-                        <publishRegistry>
-                            <username>${docker.username}</username>
-                            <token>${docker.key}</token>
-                            <url>${docker.registryUrl}</url>
-                        </publishRegistry>
-                    </docker>
                 </configuration>
             </plugin>
         </plugins>
